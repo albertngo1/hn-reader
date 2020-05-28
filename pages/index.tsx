@@ -1,6 +1,7 @@
 import Head from 'next/head'
+import Sidebar from '../components/Sidebar';
 
-export default function Home() {
+export default function Home(): React.ReactNode {
   return (
     <div className="container">
       <Head>
@@ -8,9 +9,11 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <Sidebar />
+
       <main>
         <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          Learn <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
         <p className="description">
