@@ -20,8 +20,7 @@ const App: React.FC = () => {
       }
 
       .sidebar-wrapper {
-        width: 33%;
-        border-right: 1px black solid;
+        width: 20%;
       }
     `}</style>
     </>

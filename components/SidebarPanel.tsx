@@ -46,6 +46,8 @@ class SidebarPanel extends Component<SidebarPanelProps, SidebarPanelState> {
 
     return (
       <>
+      <div>HackerNews Reader</div>
+      <div className='sidebar-panel'>
         <ul>
           {stories.map((story, idx) => (
             <li key={`story-${idx}`}>
@@ -53,10 +55,26 @@ class SidebarPanel extends Component<SidebarPanelProps, SidebarPanelState> {
             </li>
           ))}
         </ul>
+      </div>
 
         <style jsx>{`
+          .sidebar-panel {
+            position: fixed;
+            height: 100%;
+            width: inherit;
+          }
+
           ul {
+            height: 100%;
             overflow-y: scroll;
+          }
+
+          ul > li:nth-of-type(odd) {
+            background-color: #e0e0e0;
+          }
+
+          li {
+            cursor: pointer;
           }
         `}</style>
       </>
