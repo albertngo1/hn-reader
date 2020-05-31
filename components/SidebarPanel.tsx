@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import { getItem, getStoryIds, Categories } from '../util/network';
 import SidebarRow from './SidebarRow';
 
-type SidebarState = {
+type SidebarPanelState = {
   storyIds: number[],
   stories: any[],
   pagination: number,
   category: string
 }
 
-type SidebarProps = {};
+type SidebarPanelProps = {};
 
-class Sidebar extends Component<SidebarProps, SidebarState> {
-  constructor(props: SidebarProps) {
+class SidebarPanel extends Component<SidebarPanelProps, SidebarPanelState> {
+  constructor(props: SidebarPanelProps) {
     super(props);
 
     this.state = {
@@ -46,13 +46,21 @@ class Sidebar extends Component<SidebarProps, SidebarState> {
 
     return (
       <>
-      {stories.map((story, idx) => (
-        <div key={`story-${idx}`}>
-          <SidebarRow story={story} index={pagination + idx} />
-        </div>
-      ))}
+        <ul>
+          {stories.map((story, idx) => (
+            <li key={`story-${idx}`}>
+              <SidebarRow story={story} index={pagination + idx} />
+            </li>
+          ))}
+        </ul>
+
+        <style jsx>{`
+          ul {
+            overflow-y: scroll;
+          }
+        `}</style>
       </>
     )
   }
 }
-export default Sidebar;
+export default SidebarPanel;
