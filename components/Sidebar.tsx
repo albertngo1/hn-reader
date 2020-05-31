@@ -1,49 +1,55 @@
 import React, { Component } from 'react';
-import { getItem, getTopStoryIds } from '../util/network';
+import { getItem, getStoryIds, Categories } from '../util/network';
+import SidebarRow from './SidebarRow';
 
 type SidebarState = {
-  topStoryIds: [],
-  stories: [],
-  pagination: number
+  storyIds: number[],
+  stories: any[],
+  pagination: number,
+  category: string
 }
 
-class Sidebar extends Component<{}, SidebarState> {
-  constructor(props) {
+type SidebarProps = {};
+
+class Sidebar extends Component<SidebarProps, SidebarState> {
+  constructor(props: SidebarProps) {
     super(props);
+
     this.state = {
-      topStoryIds: [],
+      storyIds: [],
       stories: [],
-      pagination: 1
+      pagination: 1,
+      category: Categories.Best
     }
   }
 
   async componentDidMount() {
-    const { pagination } = this.state;
-    const ids = await getTopStoryIds();
+    const { pagination, category } = this.state;
+    const ids = await getStoryIds(category);
 
     this.setState({
-      topStoryIds: ids,
+      storyIds: ids,
       stories: await this.mapIdsToStory(ids.slice(pagination * 50, pagination * 50 + 50))
     });
   }
 
-  mapIdsToStory(ids) {
+  mapIdsToStory(ids: number[]) {
     return Promise.all(ids.map(id => getItem(id)));
   }
 
   render() {
-    const { stories } = this.state;
+    const { stories, pagination } = this.state;
 
     if (!stories.length) {
       return null;
     }
 
-    console.log(this.state.stories)
-
     return (
       <>
       {stories.map((story, idx) => (
-        <div key={idx}>{story.by}</div>
+        <div key={`story-${idx}`}>
+          <SidebarRow story={story} index={pagination + idx} />
+        </div>
       ))}
       </>
     )
