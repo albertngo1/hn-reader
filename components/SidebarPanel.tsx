@@ -70,7 +70,7 @@ class SidebarPanel extends Component<SidebarPanelProps, SidebarPanelState> {
 
           ul {
             height: 100%;
-            overflow-y: scroll;
+            overflow-y: auto;
           }
 
           ul > li:nth-of-type(odd) {

@@ -28,7 +28,7 @@ class App extends Component<{}, AppState> {
     return (
       <>
       <div className='container'>
-        <div className='sidebar-wrapper'>
+        <div className='sidebar-panel-container'>
           <SidebarPanel handleStoryIdClick={this.handleStoryIdClick} />
         </div>
         <Story storyId={storyId} />
@@ -37,10 +37,10 @@ class App extends Component<{}, AppState> {
       <style jsx>{`
         .container {
           display: flex;
-          flex-direction: column;
+          flex-direction: horizontal;
         }
 
-        .sidebar-wrapper {
+        .sidebar-panel-container {
           width: 20%;
         }
       `}</style>
