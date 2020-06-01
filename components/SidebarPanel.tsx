@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import { getItem, getStoryIds, Categories } from '../util/network';
+import React, { Component, MouseEvent } from 'react';
+import { getItem, getStoryIds, Categories } from '../utils/network';
 import SidebarRow from './SidebarRow';
+import { HandleStoryIdClick } from '../utils/types';
 
 type SidebarPanelState = {
   storyIds: number[],
@@ -9,7 +10,9 @@ type SidebarPanelState = {
   category: string
 }
 
-type SidebarPanelProps = {};
+type SidebarPanelProps = {
+  handleStoryIdClick: HandleStoryIdClick
+};
 
 class SidebarPanel extends Component<SidebarPanelProps, SidebarPanelState> {
   constructor(props: SidebarPanelProps) {
@@ -39,6 +42,7 @@ class SidebarPanel extends Component<SidebarPanelProps, SidebarPanelState> {
 
   render() {
     const { stories, pagination } = this.state;
+    const { handleStoryIdClick } = this.props;
 
     if (!stories.length) {
       return null;
@@ -51,7 +55,7 @@ class SidebarPanel extends Component<SidebarPanelProps, SidebarPanelState> {
         <ul>
           {stories.map((story, idx) => (
             <li key={`story-${idx}`}>
-              <SidebarRow story={story} index={pagination + idx} />
+              <SidebarRow story={story} index={pagination + idx} handleStoryIdClick={handleStoryIdClick} />
             </li>
           ))}
         </ul>

@@ -1,30 +1,52 @@
 
-import React from 'react';
+import React, { Component, MouseEvent } from 'react';
 import SidebarPanel from '../components/SidebarPanel';
 import Story from '../components/Story';
 
-const App: React.FC = () => {
-  return (
-    <>
-    <div className='container'>
-      <div className='sidebar-wrapper'>
-        <SidebarPanel />
+interface AppState {
+  storyId: number;
+};
+
+class App extends Component<{}, AppState> {
+  constructor(props: {}) {
+    super(props);
+
+    this.state = {
+      storyId: null
+    }
+  }
+
+  handleStoryIdClick = (e: MouseEvent, id: number) => {
+    e.preventDefault();
+
+    this.setState({ storyId: id });
+  }
+
+  render() {
+    const { storyId } = this.state;
+    console.log(storyId)
+    return (
+      <>
+      <div className='container'>
+        <div className='sidebar-wrapper'>
+          <SidebarPanel handleStoryIdClick={this.handleStoryIdClick} />
+        </div>
+        <Story storyId={storyId} />
       </div>
-      <Story />
-    </div>
 
-    <style jsx>{`
-      .container {
-        display: flex;
-        flex-direction: column;
-      }
+      <style jsx>{`
+        .container {
+          display: flex;
+          flex-direction: column;
+        }
 
-      .sidebar-wrapper {
-        width: 20%;
-      }
-    `}</style>
-    </>
-  )
+        .sidebar-wrapper {
+          width: 20%;
+        }
+      `}</style>
+      </>
+    )
+  }
 }
 
 export default App;

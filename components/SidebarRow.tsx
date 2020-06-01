@@ -1,6 +1,6 @@
-
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import { format } from 'timeago.js';
+import { HandleStoryIdClick } from '../utils/types';
 
 type Story = {
   by: string
@@ -14,15 +14,19 @@ type Story = {
   url: string
 }
 
-const SidebarRow: React.FC<{ story: Story, index: number }> = ({ story: { title, score, by, time, kids }, index }) => {
+const SidebarRow: React.FC<{ story: Story, index: number, handleStoryIdClick: HandleStoryIdClick }> =
+  ({ story: { id, title, score, by, time, kids }, index, handleStoryIdClick }) => {
   return (
     <>
-      <div className='row-wrapper'>
+      <div onClick={(e: MouseEvent) => handleStoryIdClick(e, id)} className='row-wrapper'>
         <div className='primary-text-wrapper'>
           {index}.&nbsp;
           <div className='primary-text'>{title}</div>
         </div>
-        <div className='secondary-text'>{score} points by {by} {format(time.toString() + '000', 'en_US')} | {kids.length} comments</div>
+        <div className='secondary-text'>
+          {score} points by {by} {format(time.toString() + '000', 'en_US')} | &nbsp;
+          {kids.length} comments
+          </div>
       </div>
 
     <style jsx>{`
