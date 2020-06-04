@@ -1,18 +1,6 @@
 import React, { MouseEvent } from 'react';
 import { format } from 'timeago.js';
-import { HandleStoryIdClick } from '../utils/types';
-
-type Story = {
-  by: string
-  descendants: number
-  id: number
-  kids: number[]
-  score: number
-  time: number
-  title: string
-  type: string
-  url: string
-}
+import { HandleStoryIdClick, Item as Story } from '../utils/types';
 
 const SidebarRow: React.FC<{ story: Story, index: number, handleStoryIdClick: HandleStoryIdClick }> =
   ({ story: { id, title, score, by, time, kids }, index, handleStoryIdClick }) => {
@@ -46,7 +34,6 @@ const SidebarRow: React.FC<{ story: Story, index: number, handleStoryIdClick: Ha
 
       .secondary-text {
         font-size: .75rem;
-        padding-left: 15px;
       }
     `}</style>
     </>

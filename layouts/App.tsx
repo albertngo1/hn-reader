@@ -4,7 +4,7 @@ import SidebarPanel from '../components/SidebarPanel';
 import Story from '../components/Story';
 
 interface AppState {
-  storyId: number;
+  storyId: number | null;
 };
 
 class App extends Component<{}, AppState> {
@@ -24,7 +24,7 @@ class App extends Component<{}, AppState> {
 
   render() {
     const { storyId } = this.state;
-    console.log(storyId)
+
     return (
       <>
       <div className='container'>
