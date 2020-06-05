@@ -12,10 +12,10 @@ const SidebarPanel: FC<Props> = ({ handleStoryIdClick }) => {
     return Promise.all(ids.map(id => getItem(id)));
   }
 
-  const [storyIds, setStoryIds] = useState([]);
+  const [, setStoryIds] = useState([]);
   const [stories, setStories] = useState([]);
-  const [pagination, setPagination] = useState(1);
-  const [category, setCategory] = useState(Categories.Best);
+  const [pagination] = useState(1);
+  const [category] = useState(Categories.Best);
 
   useEffect(() => {
     const fetchData = async () => {
