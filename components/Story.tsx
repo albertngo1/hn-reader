@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { getItem } from '../utils/network';
 import StoryHeader from './StoryHeader';
 
@@ -6,7 +6,7 @@ interface Props {
   storyId: number;
 }
 
-const Story: React.FC<Props> = ({ storyId }) => {
+const Story: FC<Props> = ({ storyId }) => {
   const [story, setStory] = useState(null);
 
   useEffect(() => {
@@ -14,10 +14,15 @@ const Story: React.FC<Props> = ({ storyId }) => {
       .then((res: string) => setStory(res));
   }, [storyId]);
 
-  console.log(story)
+  if (!story) {
+    return null;
+  }
+
+  const { by, score, time, title, url } = story;
+
   return (
     <>
-    <StoryHeader story={story} />
+    <StoryHeader by={by} score={score} time={time} title={title} url={url} />
     <div>{storyId}</div>
 
     <style jsx>{`

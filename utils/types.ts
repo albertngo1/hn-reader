@@ -1,6 +1,4 @@
-import { MouseEvent } from 'react';
-
-export type HandleStoryIdClick = (e: MouseEvent, id: number) => void
+export type HandleStoryIdClick = (id: number) => void;
 
 export type Item = {
   by: string

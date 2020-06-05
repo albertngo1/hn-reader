@@ -1,4 +1,4 @@
-import React, { Component, MouseEvent } from 'react';
+import React, { Component } from 'react';
 import { getItem, getStoryIds, Categories } from '../utils/network';
 import SidebarRow from './SidebarRow';
 import { HandleStoryIdClick } from '../utils/types';

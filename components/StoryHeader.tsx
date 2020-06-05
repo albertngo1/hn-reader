@@ -2,10 +2,14 @@
 import React from 'react';
 
 interface Props {
-  story: any
+  by: string,
+  score: number,
+  time: number,
+  title: string,
+  url: string
 }
 
-const StoryHeader: React.FC<Props> = ({ story }) => {
+const StoryHeader: React.FC<Props> = ({ by, score, time, title, url }) => {
   return (
     <>
 

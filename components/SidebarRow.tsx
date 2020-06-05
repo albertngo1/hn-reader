@@ -1,12 +1,12 @@
-import React, { MouseEvent } from 'react';
+import React, { FC } from 'react';
 import { format } from 'timeago.js';
 import { HandleStoryIdClick, Item as Story } from '../utils/types';
 
-const SidebarRow: React.FC<{ story: Story, index: number, handleStoryIdClick: HandleStoryIdClick }> =
+const SidebarRow: FC<{ story: Story, index: number, handleStoryIdClick: HandleStoryIdClick }> =
   ({ story: { id, title, score, by, time, kids }, index, handleStoryIdClick }) => {
   return (
     <>
-      <div onClick={(e: MouseEvent) => handleStoryIdClick(e, id)} className='row-wrapper'>
+      <div onClick={() => handleStoryIdClick(id)} className='row-wrapper'>
         <div className='primary-text-wrapper'>
           {index}.&nbsp;
           <div className='primary-text'>{title}</div>
