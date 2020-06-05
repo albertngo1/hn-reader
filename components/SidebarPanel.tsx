@@ -1,55 +1,38 @@
-import React, { Component } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { getItem, getStoryIds, Categories } from '../utils/network';
 import SidebarRow from './SidebarRow';
 import { HandleStoryIdClick } from '../utils/types';
 
-type SidebarPanelState = {
-  storyIds: number[],
-  stories: any[],
-  pagination: number,
-  category: string
-}
-
-type SidebarPanelProps = {
+type Props = {
   handleStoryIdClick: HandleStoryIdClick
 };
 
-class SidebarPanel extends Component<SidebarPanelProps, SidebarPanelState> {
-  constructor(props: SidebarPanelProps) {
-    super(props);
-
-    this.state = {
-      storyIds: [],
-      stories: [],
-      pagination: 1,
-      category: Categories.Best
-    }
-  }
-
-  async componentDidMount() {
-    const { pagination, category } = this.state;
-    const ids = await getStoryIds(category);
-
-    this.setState({
-      storyIds: ids,
-      stories: await this.mapIdsToStory(ids.slice(pagination * 50, pagination * 50 + 50))
-    });
-  }
-
-  mapIdsToStory(ids: number[]) {
+const SidebarPanel: FC<Props> = ({ handleStoryIdClick }) => {
+  function mapIdsToStory(ids: number[]) {
     return Promise.all(ids.map(id => getItem(id)));
   }
 
-  render() {
-    const { stories, pagination } = this.state;
-    const { handleStoryIdClick } = this.props;
+  const [storyIds, setStoryIds] = useState([]);
+  const [stories, setStories] = useState([]);
+  const [pagination, setPagination] = useState(1);
+  const [category, setCategory] = useState(Categories.Best);
 
-    if (!stories.length) {
-      return null;
+  useEffect(() => {
+    const fetchData = async () => {
+      const ids = await getStoryIds(category);
+
+      setStoryIds(ids);
+      setStories(await mapIdsToStory(ids.slice(pagination * 50, pagination * 50 + 50)));
     }
+    fetchData();
+  });
 
-    return (
-      <>
+  if (!stories.length) {
+    return null;
+  }
+
+  return (
+    <>
       <div>HackerNews Reader</div>
       <div className='sidebar-panel'>
         <ul>
@@ -61,28 +44,28 @@ class SidebarPanel extends Component<SidebarPanelProps, SidebarPanelState> {
         </ul>
       </div>
 
-        <style jsx>{`
-          .sidebar-panel {
-            position: fixed;
-            height: 100%;
-            width: inherit;
-          }
+      <style jsx>{`
+        .sidebar-panel {
+          position: fixed;
+          height: 100%;
+          width: inherit;
+        }
 
-          ul {
-            height: 100%;
-            overflow-y: auto;
-          }
+        ul {
+          height: 100%;
+          overflow-y: auto;
+        }
 
-          ul > li:nth-of-type(odd) {
-            background-color: #e0e0e0;
-          }
+        ul > li:nth-of-type(odd) {
+          background-color: #e0e0e0;
+        }
 
-          li {
-            cursor: pointer;
-          }
-        `}</style>
-      </>
-    )
-  }
+        li {
+          cursor: pointer;
+        }
+      `}</style>
+    </>
+  )
 }
+
 export default SidebarPanel;
