@@ -8,7 +8,7 @@ export enum Categories {
 
 const baseUrl = 'https://hacker-news.firebaseio.com/v0';
 
-export const getItem = async (itemId: number) => {
+export const getItem = async (itemId: number): Promise<string> => {
   const url = `${baseUrl}/item/${itemId}.json`;
   const response = await fetch(url);
   const data: string = await response.json();
@@ -16,7 +16,7 @@ export const getItem = async (itemId: number) => {
   return data;
 }
 
-export const getStoryIds = async (category: string) => {
+export const getStoryIds = async (category: string): Promise<number[]> => {
   const url = `${baseUrl}/${category}stories.json`;
 
   return await _obtainCollectionJson(url);
@@ -27,7 +27,7 @@ export const getUser = (userId: number) => {
   return fetch(url);
 }
 
-const _obtainCollectionJson = async (url: string) => {
+const _obtainCollectionJson = async (url: string): Promise<number[]> => {
   const response = await fetch(url);
   const data: number[] = await response.json();
 

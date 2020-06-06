@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { FC, useState, useEffect } from 'react';
 import { getItem } from '../utils/network';
 import StoryHeader from './StoryHeader';
@@ -23,8 +24,8 @@ const Story: FC<Props> = ({ storyId }) => {
   return (
     <>
     <StoryHeader by={by} score={score} time={time} title={title} url={url} />
-    <div>{storyId}</div>
 
+    {/* <StoryContent /> */}
     <style jsx>{`
       div {
         height: 100%;

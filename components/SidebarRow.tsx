@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { FC } from 'react';
 import { format } from 'timeago.js';
 import { HandleStoryIdClick, Item as Story } from '../utils/types';

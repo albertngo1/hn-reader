@@ -4,7 +4,7 @@ import SidebarPanel from '../components/SidebarPanel';
 import Story from '../components/Story';
 
 const App: FC = () => {
-  const [storyId, setStoryId] = useState(null);
+  const [storyId, setStoryId] = useState<number | null>(null);
 
   const handleStoryIdClick = (id: number) => setStoryId(id);
 

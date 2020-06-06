@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { FC, useState, useEffect } from 'react';
 import { getItem, getStoryIds, Categories } from '../utils/network';
 import SidebarRow from './SidebarRow';
@@ -25,7 +26,7 @@ const SidebarPanel: FC<Props> = ({ handleStoryIdClick }) => {
       setStories(await mapIdsToStory(ids.slice(pagination * 50, pagination * 50 + 50)));
     }
     fetchData();
-  });
+  }, [category]);
 
   if (!stories.length) {
     return null;

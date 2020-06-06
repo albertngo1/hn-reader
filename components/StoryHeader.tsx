@@ -1,5 +1,8 @@
+/* eslint-disable react/prop-types */
 
 import React from 'react';
+import psl from 'psl';
+import { extractHostname } from '../utils/utils';
 
 interface Props {
   by: string,
@@ -9,18 +12,21 @@ interface Props {
   url: string
 }
 
-const StoryHeader: React.FC<Props> = ({ by, score, time, title, url }) => {
-  return (
-    <>
+const StoryHeader: React.FC<Props> = ({ by, score, time, title, url }) => (
+  <>
+    <a href={url} target='_blank' rel="noopener noreferrer">
+      <div>
+        {by} {score} {time} {title} {psl.get(extractHostname(url))}
+      </div>
+    </a>
 
-      <style jsx>{`
-      div {
-        height: 100%;
-        margin-left: 200px;
-      }
-    `}</style>
-    </>
-  )
-}
+    <style jsx>{`
+        div {
+          height: 100%;
+          margin-left: 200px;
+        }
+      `}</style>
+  </>
+)
 
 export default StoryHeader;
