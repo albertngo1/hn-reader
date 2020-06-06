@@ -1,3 +1,5 @@
+import { getItem } from './network';
+
 export const extractHostname = (url: string): string => {
   let hostname: string;
   //find & remove protocol (http, ftp, etc.) and get hostname
@@ -15,4 +17,8 @@ export const extractHostname = (url: string): string => {
   hostname = hostname.split('?')[0];
 
   return hostname;
+}
+
+export const mapIdsToItem = (ids: number[]): Promise<string[]> => {
+  return Promise.all(ids.map(id => getItem(id)));
 }

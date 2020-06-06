@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import React from 'react';
+import React, { FC } from 'react';
 import psl from 'psl';
 import { extractHostname } from '../utils/utils';
 
@@ -12,20 +12,27 @@ interface Props {
   url: string
 }
 
-const StoryHeader: React.FC<Props> = ({ by, score, time, title, url }) => (
+const StoryHeader: FC<Props> = ({ by, score, time, title, url }) => (
   <>
     <a href={url} target='_blank' rel="noopener noreferrer">
-      <div>
-        {by} {score} {time} {title} {psl.get(extractHostname(url))}
+      <div className='container'>
+        <div>
+          {by} {score} {time} {title} {psl.get(extractHostname(url))}
+        </div>
       </div>
     </a>
 
     <style jsx>{`
-        div {
-          height: 100%;
-          margin-left: 200px;
-        }
-      `}</style>
+      .container {
+        display: flex;
+      }
+
+      a {
+        padding: 15px;
+        background-color: red;
+        height: 100%;
+      }
+    `}</style>
   </>
 )
 

@@ -2,6 +2,7 @@
 import React, { FC, useState, useEffect } from 'react';
 import { getItem } from '../utils/network';
 import StoryHeader from './StoryHeader';
+import StoryContent from './StoryContent';
 
 interface Props {
   storyId: number;
@@ -19,16 +20,21 @@ const Story: FC<Props> = ({ storyId }) => {
     return null;
   }
 
-  const { by, score, time, title, url } = story;
+  const { by, score, time, title, url, kids } = story;
 
   return (
     <>
-    <StoryHeader by={by} score={score} time={time} title={title} url={url} />
+    <div>
+      <StoryHeader by={by} score={score} time={time} title={title} url={url} />
 
-    {/* <StoryContent /> */}
+      <StoryContent commentIds={kids}/>
+    </div>
+
     <style jsx>{`
       div {
         height: 100%;
+        display: flex;
+        flex-direction: column;
         margin-left: 200px;
       }
     `}</style>

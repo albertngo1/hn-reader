@@ -1,18 +1,15 @@
 /* eslint-disable react/prop-types */
 import React, { FC, useState, useEffect } from 'react';
-import { getItem, getStoryIds, Categories } from '../utils/network';
+import { getStoryIds, Categories } from '../utils/network';
 import SidebarRow from './SidebarRow';
 import { HandleStoryIdClick } from '../utils/types';
+import { mapIdsToItem } from '../utils/utils';
 
 type Props = {
   handleStoryIdClick: HandleStoryIdClick
 };
 
 const SidebarPanel: FC<Props> = ({ handleStoryIdClick }) => {
-  function mapIdsToStory(ids: number[]) {
-    return Promise.all(ids.map(id => getItem(id)));
-  }
-
   const [, setStoryIds] = useState([]);
   const [stories, setStories] = useState([]);
   const [pagination] = useState(1);
@@ -23,7 +20,7 @@ const SidebarPanel: FC<Props> = ({ handleStoryIdClick }) => {
       const ids = await getStoryIds(category);
 
       setStoryIds(ids);
-      setStories(await mapIdsToStory(ids.slice(pagination * 50, pagination * 50 + 50)));
+      setStories(await mapIdsToItem(ids.slice(pagination * 50, pagination * 50 + 50)));
     }
     fetchData();
   }, [category]);

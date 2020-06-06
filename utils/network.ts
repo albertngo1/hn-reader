@@ -22,10 +22,10 @@ export const getStoryIds = async (category: string): Promise<number[]> => {
   return await _obtainCollectionJson(url);
 }
 
-export const getUser = (userId: number) => {
-  const url = `${baseUrl}/user/${userId}.json`;
-  return fetch(url);
-}
+// export const getUser = (userId: number) => {
+//   const url = `${baseUrl}/user/${userId}.json`;
+//   return fetch(url);
+// }
 
 const _obtainCollectionJson = async (url: string): Promise<number[]> => {
   const response = await fetch(url);
