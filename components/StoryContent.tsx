@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import React, { FC } from 'react';
+import React, { ReactElement, FC } from 'react';
 import Comment from './Comment';
 
 interface Props {
@@ -10,7 +10,9 @@ interface Props {
 const StoryContent: FC<Props> = ({ commentIds }) => {
   return (
     <>
-      {commentIds.map((commentId, idx) => <Comment key={`parent-comment-${idx}`}  commentId={commentId}/>)}
+      {commentIds.map((commentId: number, idx: number): ReactElement => {
+        return <Comment key={`parent-comment-${idx}`} commentId={commentId} />;
+      })}
 
       <style jsx>{`
 

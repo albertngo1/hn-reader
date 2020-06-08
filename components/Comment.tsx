@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import React, { FC, useEffect, useState } from 'react';
+import React, { ReactElement, FC, useEffect, useState } from 'react';
 import { format } from 'timeago.js';
 import { mapIdsToItem } from '../utils/utils';
 import { getItem } from '../utils/network';
@@ -31,7 +31,9 @@ const Comment: FC<Props> = ({ commentId }) => {
     if (!kids || kids.length === 0) return;
 
     return (
-      kids.map((kid, idx)=> <Comment key={`child-comment-${id}-${idx}`} commentId={kid} />)
+      kids.map((kid: number, idx: number): ReactElement => {
+        return <Comment key={`child-comment-${id}-${idx}`} commentId={kid} />;
+      })
     )
   }
 
