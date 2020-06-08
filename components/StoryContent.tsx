@@ -1,25 +1,16 @@
 /* eslint-disable react/prop-types */
 
-import React, { FC, useEffect, useState } from 'react';
-import { mapIdsToItem } from '../utils/utils';
+import React, { FC } from 'react';
+import Comment from './Comment';
 
 interface Props {
   commentIds: number[]
 }
 
 const StoryContent: FC<Props> = ({ commentIds }) => {
-  const [comments, setComments] = useState([]);
-
-  useEffect(() => {
-    const getData = async () => setComments(await mapIdsToItem(commentIds));
-
-    getData();
-  }, [commentIds])
-
   return (
     <>
-      <div>
-      </div>
+      {commentIds.map((commentId, idx) => <Comment key={`parent-comment-${idx}`}  commentId={commentId}/>)}
 
       <style jsx>{`
 
