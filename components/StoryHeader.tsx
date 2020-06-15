@@ -2,6 +2,7 @@
 
 import React, { FC } from 'react';
 import psl from 'psl';
+import { format } from 'timeago.js';
 import { extractHostname } from '../utils/utils';
 
 interface Props {
@@ -12,28 +13,42 @@ interface Props {
   url: string
 }
 
-const StoryHeader: FC<Props> = ({ by, score, time, title, url }) => (
-  <>
-    <a href={url} target='_blank' rel="noopener noreferrer">
+const StoryHeader: FC<Props> = ({ by, score, time, title, url }) => {
+  const urlHtml = (innerText: string) => {
+    return (
+      <>
+        <a rel='noreferrer' target='_blank' href={url} >
+          <span>{innerText}</span>
+        </a>
+
+        <style jsx>{`
+          span:hover {
+            text-decoration: underline;
+          }
+        `}</style>
+      </>
+    );
+  }
+
+  return (
+    <>
       <div className='container'>
         <div>
-          {by} {score} {time} {title} {psl.get(extractHostname(url))}
+          {urlHtml(title)} ({urlHtml(psl.get(extractHostname(url)))})
+        </div>
+        <div>
+          {score} points by {by} {format(time.toString() + '000', 'en_US')}
         </div>
       </div>
-    </a>
 
-    <style jsx>{`
-      .container {
-        display: flex;
-      }
-
-      a {
-        padding: 15px;
-        background-color: red;
-        height: 100%;
-      }
-    `}</style>
-  </>
-)
+      <style jsx>{`
+        .container {
+          display: flex;
+          flex-direction: column;
+        }
+      `}</style>
+    </>
+  )
+}
 
 export default StoryHeader;
