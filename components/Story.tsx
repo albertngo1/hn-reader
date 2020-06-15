@@ -27,7 +27,7 @@ const Story: FC<Props> = ({ storyId }) => {
     <div>
       <StoryHeader by={by} score={score} time={time} title={title} url={url} />
 
-      {/* <StoryContent commentIds={kids}/> */}
+      <StoryContent commentIds={kids}/>
     </div>
 
     <style jsx>{`

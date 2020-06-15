@@ -2,14 +2,14 @@
 
 import React, { ReactElement, FC, useEffect, useState } from 'react';
 import { format } from 'timeago.js';
-import { mapIdsToItem } from '../utils/utils';
 import { getItem } from '../utils/network';
 
 interface Props {
   commentId: number
+  level?: number
 }
 
-const Comment: FC<Props> = ({ commentId }) => {
+const Comment: FC<Props> = ({ commentId, level = 0 }) => {
   const [comment, setComment] = useState(null);
 
   useEffect(() => {
@@ -32,15 +32,17 @@ const Comment: FC<Props> = ({ commentId }) => {
 
     return (
       kids.map((kid: number, idx: number): ReactElement => {
-        return <Comment key={`child-comment-${id}-${idx}`} commentId={kid} />;
+        return <Comment key={`child-comment-${id}-${idx}`} commentId={kid} level={level + 1} />;
       })
     )
   }
 
+  const markup = { __html: text };
+
   return (
     <>
       {by} {formattedTime}
-      {text}
+      <div dangerouslySetInnerHTML={markup}></div>
 
       {renderNestedComments()}
       <style jsx>{`

@@ -21,5 +21,4 @@ const StoryContent: FC<Props> = ({ commentIds }) => {
   )
 }
 
-
 export default StoryContent;
