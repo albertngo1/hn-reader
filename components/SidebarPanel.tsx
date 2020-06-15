@@ -31,18 +31,25 @@ const SidebarPanel: FC<Props> = ({ handleStoryIdClick }) => {
 
   return (
     <>
-      <div>HackerNews Reader</div>
-      <div className='sidebar-panel'>
-        <ul>
-          {stories.map((story, idx) => (
-            <li key={`story-${idx}`}>
-              <SidebarRow story={story} index={pagination + idx} handleStoryIdClick={handleStoryIdClick} />
-            </li>
-          ))}
-        </ul>
+      <div className='container'>
+        <div>HackerNews Reader</div>
+        <div className='sidebar-panel'>
+          <ul>
+            {stories.map((story, idx) => (
+              <li key={`story-${idx}`}>
+                <SidebarRow story={story} index={pagination + idx} handleStoryIdClick={handleStoryIdClick} />
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
       <style jsx>{`
+        .container {
+          position: fixed;
+          width: inherit;
+        }
+
         .sidebar-panel {
           position: fixed;
           height: 100%;

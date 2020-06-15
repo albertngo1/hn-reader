@@ -1,4 +1,5 @@
 import { getItem } from './network';
+import CRC32 from 'crc-32';
 
 export const extractHostname = (url: string): string => {
   let hostname: string;
@@ -21,4 +22,9 @@ export const extractHostname = (url: string): string => {
 
 export const mapIdsToItem = (ids: number[]): Promise<string[]> => {
   return Promise.all(ids.map(id => getItem(id)));
+}
+
+export const stringToColour = function (str: string): string {
+  const res = '#' + CRC32.str(str).toString().slice(1, 7);
+  return res
 }

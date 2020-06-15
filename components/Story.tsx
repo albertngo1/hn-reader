@@ -24,18 +24,30 @@ const Story: FC<Props> = ({ storyId }) => {
 
   return (
     <>
-    <div>
-      <StoryHeader by={by} score={score} time={time} title={title} url={url} />
+    <div className='container'>
+      <div className='storyheader-container'>
+        <StoryHeader by={by} score={score} time={time} title={title} url={url} />
+      </div>
 
-      <StoryContent commentIds={kids}/>
+      <div className='storycontent-container'>
+        <StoryContent commentIds={kids}/>
+      </div>
     </div>
 
     <style jsx>{`
-      div {
+      .container {
         height: 100%;
         display: flex;
         flex-direction: column;
-        margin-left: 200px;
+        margin-left: 220px;
+      }
+
+      .storyheader-container {
+        padding: 0 2rem;
+      }
+
+      .storycontent-container {
+        padding: 2rem;
       }
     `}</style>
     </>

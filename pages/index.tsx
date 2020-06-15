@@ -1,7 +1,8 @@
 import Head from 'next/head'
 import App from '../layouts/App';
+import React, { ReactNode } from 'react';
 
-export default function Home(): React.ReactNode {
+export default function Home(): ReactNode {
   return (
     <div className="container">
       <Head>
@@ -31,6 +32,10 @@ export default function Home(): React.ReactNode {
 
         html {
           font-family: Roboto, sans serif
+        }
+
+        body {
+          background-color: rgb(238, 238, 238);
         }
       `}</style>
     </div>
