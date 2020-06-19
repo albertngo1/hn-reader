@@ -30,6 +30,10 @@ export default function Home(): ReactNode {
           text-decoration: inherit;
         }
 
+        a:hover {
+          text-decoration: underline;
+        }
+
         html {
           font-family: Roboto, sans serif
         }

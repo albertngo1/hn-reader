@@ -45,9 +45,10 @@ const Comment: FC<Props> = ({ commentId, level }) => {
             <style jsx>{`
               div {
                 margin-left: 2rem;
-                border-top: 3px solid ${stringToColour(level.toString())};
-                border-left: 3px solid ${stringToColour(level.toString())};
-                border-top-left-radius: 10px;
+                border: 2px solid ${stringToColour(level.toString())};
+                border-radius: 10px;
+                padding: .5rem;
+                margin-bottom: 1rem;
               }
             `}</style>
           </Fragment>

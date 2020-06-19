@@ -34,7 +34,7 @@ const StoryHeader: FC<Props> = ({ by, score, time, title, url }) => {
     <>
       <div className='container'>
         <div>
-          {urlHtml(title)} ({urlHtml(psl.get(extractHostname(url)))})
+          {urlHtml(title)} {url && `(${urlHtml(psl.get(extractHostname(url)))})`}
         </div>
         <div>
           {score} points by {by} {format(time.toString() + '000', 'en_US')}

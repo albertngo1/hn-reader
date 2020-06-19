@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import React, { FC } from 'react';
 import { format } from 'timeago.js';
-import { HandleStoryIdClick, Item as Story } from '../utils/types';
+import { HandleStoryIdClick, IItem as IStory } from '../utils/types';
 
-const SidebarRow: FC<{ story: Story, index: number, handleStoryIdClick: HandleStoryIdClick }> =
+const SidebarRow: FC<{ story: IStory, index: number, handleStoryIdClick: HandleStoryIdClick }> =
   ({ story: { id, title, score, by, time, kids }, index, handleStoryIdClick }) => {
   return (
     <>

@@ -1,6 +1,6 @@
 export type HandleStoryIdClick = (id: number) => void;
 
-export type Item = {
+export type IItem = {
   by: string
   descendants: number
   id: number
@@ -12,7 +12,7 @@ export type Item = {
   url: string
 }
 
-export type Comment = {
+export type IComment = {
   by: string
   id: number
   kids: number[]

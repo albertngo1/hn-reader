@@ -25,6 +25,5 @@ export const mapIdsToItem = (ids: number[]): Promise<string[]> => {
 }
 
 export const stringToColour = function (str: string): string {
-  const res = '#' + CRC32.str(str).toString().slice(1, 7);
-  return res
+  return '#' + CRC32.str(str).toString().slice(1, 7);
 }
