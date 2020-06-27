@@ -12,6 +12,7 @@ interface Props {
 
 const Comment: FC<Props> = ({ commentId, level }) => {
   const [comment, setComment] = useState(null);
+  const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
     async function getData() {
@@ -57,9 +58,30 @@ const Comment: FC<Props> = ({ commentId, level }) => {
     )
   }
 
+  if (collapsed) {
+    return (
+      <>
+        <a onClick={() => setCollapsed(!collapsed)}>
+          [+] {by} {formattedTime}
+        </a>
+
+        <style jsx>{`
+          div {
+            margin: 1rem 0;
+          }
+
+          a {
+            cursor: pointer;
+          }
+        `}</style>
+      </>
+    )
+  }
+
   return (
     <>
-      {by} {formattedTime}
+      <a onClick={() => setCollapsed(!collapsed)}>[–]</a>
+      &nbsp;{by} {formattedTime}
       <div dangerouslySetInnerHTML={{ __html: text }}></div>
 
       {renderNestedComments()}
@@ -67,6 +89,10 @@ const Comment: FC<Props> = ({ commentId, level }) => {
       <style jsx>{`
         div {
           margin: 1rem 0;
+        }
+
+        a {
+          cursor: pointer;
         }
       `}</style>
     </>

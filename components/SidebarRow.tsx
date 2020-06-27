@@ -18,25 +18,27 @@ const SidebarRow: FC<{ story: IStory, index: number, handleStoryIdClick: HandleS
           </div>
       </div>
 
-    <style jsx>{`
-      .row-wrapper {
-        padding: 10px 5px;
-      }
+      <style jsx>
+        {`
+          .row-wrapper {
+            padding: 10px 5px;
+          }
 
-      .row-wrapper:hover {
-        background-color: #fff;
-      }
+          .row-wrapper:hover {
+            background-color: #fff;
+          }
 
-      .primary-text-wrapper {
-        display: flex;
-        font-size: .9rem;
-        margin-bottom: 5px;
-      }
+          .primary-text-wrapper {
+            display: flex;
+            font-size: .9rem;
+            margin-bottom: 5px;
+          }
 
-      .secondary-text {
-        font-size: .75rem;
-      }
-    `}</style>
+          .secondary-text {
+            font-size: .75rem;
+          }
+        `}
+      </style>
     </>
   )
 }
