@@ -13,13 +13,19 @@ interface Props {
   url: string
 }
 
+interface IUrlHtmlOpts {
+  parentheses: boolean
+}
+
 const StoryHeader: FC<Props> = ({ by, score, time, title, url }) => {
-  const urlHtml = (innerText: string) => {
+  const urlHtml = (innerText: string, opts?: IUrlHtmlOpts) => {
     return (
       <>
+        {opts && opts.parentheses && '('}
         <a rel='noreferrer' target='_blank' href={url} >
           <span>{innerText}</span>
         </a>
+        {opts && opts.parentheses && ')'}
 
         <style jsx>{`
           span:hover {
@@ -34,7 +40,7 @@ const StoryHeader: FC<Props> = ({ by, score, time, title, url }) => {
     <>
       <div className='container'>
         <div>
-          {urlHtml(title)} {url && `(${urlHtml(psl.get(extractHostname(url)))})`}
+          {urlHtml(title)} {url && urlHtml(psl.get(extractHostname(url)), { parentheses: true })}
         </div>
         <div>
           {score} points by {by} {format(time.toString() + '000', 'en_US')}
