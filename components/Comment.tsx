@@ -88,6 +88,7 @@ const Comment: FC<Props> = ({ commentId, level, commentCache, setCommentCache })
 
           a {
             cursor: pointer;
+            user-select: none;
           }
         `}</style>
       </>
@@ -109,6 +110,7 @@ const Comment: FC<Props> = ({ commentId, level, commentCache, setCommentCache })
 
         a {
           cursor: pointer;
+          user-select: none;
         }
       `}</style>
     </>
