@@ -4,22 +4,36 @@ import React, { Fragment, ReactElement, FC, useEffect, useState } from 'react';
 import { format } from 'timeago.js';
 import { getItem } from '../utils/network';
 import { stringToColour } from '../utils/utils';
+import { ICommentCache } from '../utils/types';
 
 interface Props {
   commentId: number
   level?: number
+  commentCache: ICommentCache
+  setCommentCache
 }
 
-const Comment: FC<Props> = ({ commentId, level }) => {
+const Comment: FC<Props> = ({ commentId, level, commentCache, setCommentCache }) => {
   const [comment, setComment] = useState(null);
   const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
     async function getData() {
-      setComment(await getItem(commentId));
+      const comment = await getItem(commentId);
+
+      setComment(comment);
+
+      setCommentCache(prevState => (
+        { ...prevState, [commentId]: comment }
+      ));
     }
 
-    getData();
+    if (commentCache[commentId]) {
+      setComment(commentCache[commentId]);
+    } else {
+      getData();
+    }
+
   }, [commentId])
 
   if (!comment) {
@@ -40,6 +54,8 @@ const Comment: FC<Props> = ({ commentId, level }) => {
               <Comment
                 commentId={kid}
                 level={level + 1}
+                commentCache={commentCache}
+                setCommentCache={setCommentCache}
               />
             </div>
 

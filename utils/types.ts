@@ -21,3 +21,6 @@ export type IComment = {
   time: number
   type: "comment"
 }
+export interface ICommentCache {
+  [key: string]: IComment
+}

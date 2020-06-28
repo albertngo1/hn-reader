@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 
-import React, { ReactElement, FC } from 'react';
+import React, { ReactElement, FC, useState } from 'react';
 import Comment from './Comment';
 import { stringToColour } from '../utils/utils';
+import { ICommentCache } from '../utils/types';
 
 interface Props {
   commentIds: number[]
@@ -10,12 +11,19 @@ interface Props {
 
 const StoryContent: FC<Props> = ({ commentIds }) => {
   const level = 0;
+  const [commentCache, setCommentCache] = useState<ICommentCache>({});
+
   return (
     <>
       {commentIds.map((commentId: number, idx: number): ReactElement => {
         return (
           <div key={`parent-comment-${commentId}-${idx}`}>
-            <Comment commentId={commentId} level={level + 1} />
+            <Comment
+              commentId={commentId}
+              level={level + 1}
+              commentCache={commentCache}
+              setCommentCache={setCommentCache}
+            />
           </div>
         )
       })}
