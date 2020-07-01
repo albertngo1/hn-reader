@@ -4,7 +4,7 @@ import { format } from 'timeago.js';
 import { HandleStoryIdClick, IItem as IStory } from '../utils/types';
 
 const SidebarRow: FC<{ story: IStory, index: number, handleStoryIdClick: HandleStoryIdClick }> =
-  ({ story: { id, title, score, by, time, kids }, index, handleStoryIdClick }) => {
+  ({ story: { id, title, score, by, time, descendants }, index, handleStoryIdClick }) => {
   return (
     <>
       <div onClick={() => handleStoryIdClick(id)} className='row-wrapper'>
@@ -14,7 +14,7 @@ const SidebarRow: FC<{ story: IStory, index: number, handleStoryIdClick: HandleS
         </div>
         <div className='secondary-text'>
           {score} points by {by} {format(time.toString() + '000', 'en_US')} | &nbsp;
-          {kids.length} comments
+          {descendants} comments
           </div>
       </div>
 

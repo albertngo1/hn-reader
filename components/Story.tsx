@@ -20,13 +20,13 @@ const Story: FC<Props> = ({ storyId }) => {
     return null;
   }
 
-  const { by, score, time, title, url, kids } = story;
+  const { by, score, time, title, url, kids, descendants } = story;
 
   return (
     <>
     <div className='container'>
       <div className='storyheader-container'>
-        <StoryHeader by={by} score={score} time={time} title={title} url={url} />
+        <StoryHeader by={by} score={score} time={time} title={title} url={url} descendants={descendants} />
       </div>
 
       <div className='storycontent-container'>

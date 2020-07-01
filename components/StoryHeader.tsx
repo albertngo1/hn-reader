@@ -10,14 +10,15 @@ interface Props {
   score: number,
   time: number,
   title: string,
-  url: string
+  url: string,
+  descendants: number
 }
 
 interface IUrlHtmlOpts {
   parentheses: boolean
 }
 
-const StoryHeader: FC<Props> = ({ by, score, time, title, url }) => {
+const StoryHeader: FC<Props> = ({ by, score, time, title, url, descendants }) => {
   const urlHtml = (innerText: string, opts?: IUrlHtmlOpts) => {
     return (
       <>
@@ -43,7 +44,7 @@ const StoryHeader: FC<Props> = ({ by, score, time, title, url }) => {
           {urlHtml(title)} {url && urlHtml(psl.get(extractHostname(url)), { parentheses: true })}
         </div>
         <div>
-          {score} points by {by} {format(time.toString() + '000', 'en_US')}
+          {score} points by {by} {format(time.toString() + '000', 'en_US')} | {descendants} comments
         </div>
       </div>
 
