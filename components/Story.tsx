@@ -40,6 +40,7 @@ const Story: FC<Props> = ({ storyId }) => {
         display: flex;
         flex-direction: column;
         margin-left: 220px;
+        width: 3000px;
       }
 
       .storyheader-container {
