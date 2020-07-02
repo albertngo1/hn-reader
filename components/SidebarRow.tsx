@@ -2,6 +2,7 @@
 import React, { FC } from 'react';
 import { format } from 'timeago.js';
 import { HandleStoryIdClick, IItem as IStory } from '../utils/types';
+import { COLORS } from '../utils/colors';
 
 const SidebarRow: FC<{ story: IStory, index: number, handleStoryIdClick: HandleStoryIdClick }> =
   ({ story: { id, title, score, by, time, descendants }, index, handleStoryIdClick }) => {
@@ -25,7 +26,7 @@ const SidebarRow: FC<{ story: IStory, index: number, handleStoryIdClick: HandleS
           }
 
           .row-wrapper:hover {
-            background-color: #fff;
+            background-color: ${COLORS.sideBarRowHover};
           }
 
           .primary-text-wrapper {

@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import App from '../layouts/App';
 import React, { ReactNode } from 'react';
+import { COLORS } from '../utils/colors';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Home(): ReactNode {
   return (
@@ -39,7 +41,7 @@ export default function Home(): ReactNode {
         }
 
         body {
-          background-color: rgb(238, 238, 238);
+          background-color: ${COLORS.html}
         }
       `}</style>
     </div>

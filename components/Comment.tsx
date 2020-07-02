@@ -5,6 +5,7 @@ import { format } from 'timeago.js';
 import { getItem } from '../utils/network';
 import { stringToColour } from '../utils/utils';
 import { ICommentCache } from '../utils/types';
+import { COLORS } from '../utils/colors';
 
 interface Props {
   commentId: number
@@ -66,6 +67,7 @@ const Comment: FC<Props> = ({ commentId, level, commentCache, setCommentCache })
                 border-radius: 10px;
                 padding: .5rem;
                 margin-bottom: 1rem;
+                background-color: ${level % 2 === 0 ? COLORS.evenCommentBackground : COLORS.oddCommentBackground}
               }
             `}</style>
           </Fragment>
@@ -78,7 +80,8 @@ const Comment: FC<Props> = ({ commentId, level, commentCache, setCommentCache })
     return (
       <>
         <a onClick={() => setCollapsed(!collapsed)}>
-          [+] {by} {formattedTime}
+          <span className='comment-user'>[+] {by}</span>{' '}
+          <span className='comment-date'>{formattedTime}</span>
         </a>
 
         <style jsx>{`
@@ -90,6 +93,17 @@ const Comment: FC<Props> = ({ commentId, level, commentCache, setCommentCache })
             cursor: pointer;
             user-select: none;
           }
+
+        .comment-user {
+          color: ${COLORS.lightBlue};
+          font-size: 0.80rem;
+          font-weight: 700;
+        }
+
+        .comment-date {
+          color: ${COLORS.black};
+          font-size: 0.7rem;
+        }
         `}</style>
       </>
     )
@@ -97,8 +111,14 @@ const Comment: FC<Props> = ({ commentId, level, commentCache, setCommentCache })
 
   return (
     <>
-      <a onClick={() => setCollapsed(!collapsed)}>[–]</a>
-      &nbsp;{by} {formattedTime}
+      <span className='comment-user'>
+        <a onClick={() => setCollapsed(!collapsed)}>[–]</a>
+        {' '}{by}
+      </span>
+      {' '}
+      <span className='comment-date'>
+        {formattedTime}
+      </span>
       <div dangerouslySetInnerHTML={{ __html: text }}></div>
 
       {renderNestedComments()}
@@ -111,6 +131,17 @@ const Comment: FC<Props> = ({ commentId, level, commentCache, setCommentCache })
         a {
           cursor: pointer;
           user-select: none;
+        }
+
+        .comment-user {
+          color: rgb(106, 152, 175);
+          font-size: 0.80rem;
+          font-weight: 700;
+        }
+
+        .comment-date {
+          color: black;
+          font-size: 0.7rem;
         }
       `}</style>
     </>

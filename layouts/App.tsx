@@ -1,4 +1,3 @@
-
 import React, { FC, useState } from 'react';
 import SidebarPanel from '../components/SidebarPanel';
 import Story from '../components/Story';

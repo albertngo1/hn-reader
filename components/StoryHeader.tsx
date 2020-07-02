@@ -4,6 +4,8 @@ import React, { FC } from 'react';
 import psl from 'psl';
 import { format } from 'timeago.js';
 import { extractHostname } from '../utils/utils';
+import { COLORS } from '../utils/colors';
+import { Row, Col } from 'react-bootstrap';
 
 interface Props {
   by: string,
@@ -39,19 +41,34 @@ const StoryHeader: FC<Props> = ({ by, score, time, title, url, descendants }) =>
 
   return (
     <>
-      <div className='container'>
-        <div>
-          {urlHtml(title)} {url && urlHtml(psl.get(extractHostname(url)), { parentheses: true })}
-        </div>
-        <div>
-          {score} points by {by} {format(time.toString() + '000', 'en_US')} | {descendants} comments
-        </div>
-      </div>
+      <Row>
+        <Col sm={12}>
+          {urlHtml(title)} {' '}
+          <span className='story-link'>
+            {url && urlHtml(psl.get(extractHostname(url)), { parentheses: true })}
+          </span>
+        </Col>
+        <Col sm={12}>
+          <span className='story-sub-content'>
+            {score} points by {by} {format(time.toString() + '000', 'en_US')} | {descendants} comments
+          </span>
+        </Col>
+      </Row>
 
       <style jsx>{`
         .container {
           display: flex;
           flex-direction: column;
+        }
+
+        .story-link {
+          color: ${COLORS.grey};
+          font-size: 0.75rem;
+        }
+
+        .story-sub-content {
+          color: ${COLORS.grey};
+          font-size: 0.8rem;
         }
       `}</style>
     </>

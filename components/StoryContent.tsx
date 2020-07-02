@@ -4,6 +4,7 @@ import React, { ReactElement, FC, useState } from 'react';
 import Comment from './Comment';
 import { stringToColour } from '../utils/utils';
 import { ICommentCache } from '../utils/types';
+import { COLORS } from '../utils/colors';
 
 interface Props {
   commentIds: number[]
@@ -38,6 +39,7 @@ const StoryContent: FC<Props> = ({ commentIds }) => {
           border-radius: 10px;
           padding: .5rem;
           margin-bottom: 1rem;
+          background-color: ${COLORS.evenCommentBackground}
         }
 
         a {

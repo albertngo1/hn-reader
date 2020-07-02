@@ -4,6 +4,7 @@ import { getStoryIds, Categories } from '../utils/network';
 import SidebarRow from './SidebarRow';
 import { HandleStoryIdClick } from '../utils/types';
 import { mapIdsToItem } from '../utils/utils';
+import { COLORS } from '../utils/colors';
 
 type Props = {
   handleStoryIdClick: HandleStoryIdClick
@@ -62,7 +63,7 @@ const SidebarPanel: FC<Props> = ({ handleStoryIdClick }) => {
         }
 
         ul > li:nth-of-type(odd) {
-          background-color: #e0e0e0;
+          background-color: ${COLORS.oddSidebarRow};
         }
 
         li {
