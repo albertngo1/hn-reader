@@ -2,11 +2,11 @@ import Head from 'next/head'
 import App from '../layouts/App';
 import React, { ReactNode } from 'react';
 import { COLORS } from '../utils/colors';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Home(): ReactNode {
   return (
-    <div className="container">
+    <div  >
       <Head>
         <title>HackerNews Reader</title>
         <link rel="icon" href="/favicon.ico" />
@@ -37,11 +37,12 @@ export default function Home(): ReactNode {
         }
 
         html {
-          font-family: Roboto, sans serif
+          font-family: Roboto, sans serif;
         }
 
         body {
-          background-color: ${COLORS.html}
+          background-color: ${COLORS.html};
+          padding: 15px;
         }
       `}</style>
     </div>

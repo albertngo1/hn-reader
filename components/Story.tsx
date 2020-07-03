@@ -35,14 +35,6 @@ const Story: FC<Props> = ({ storyId }) => {
     </div>
 
     <style jsx>{`
-      .container {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        margin-left: 220px;
-        width: 3000px;
-      }
-
       .storyheader-container {
         padding: 0 2rem;
       }

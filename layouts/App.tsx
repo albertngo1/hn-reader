@@ -1,6 +1,7 @@
 import React, { FC, useState } from 'react';
 import SidebarPanel from '../components/SidebarPanel';
 import Story from '../components/Story';
+import { Row, Col } from 'react-bootstrap';
 
 const App: FC = () => {
   const [storyId, setStoryId] = useState<number | null>(23426154);
@@ -9,23 +10,14 @@ const App: FC = () => {
 
   return (
     <>
-      <div className='container'>
-        <div className='sidebar-panel-container'>
+      <Row>
+        <Col md='2'>
           <SidebarPanel handleStoryIdClick={handleStoryIdClick} />
-        </div>
-        <Story storyId={storyId} />
-      </div>
-
-      <style jsx>{`
-        .container {
-          display: flex;
-          flex-direction: horizontal;
-        }
-
-        .sidebar-panel-container {
-          width: 20%;
-        }
-      `}</style>
+        </Col>
+        <Col md='10'>
+          <Story storyId={storyId} />
+        </Col>
+      </Row>
     </>
   )
 }

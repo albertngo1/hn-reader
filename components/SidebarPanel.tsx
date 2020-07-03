@@ -5,6 +5,7 @@ import SidebarRow from './SidebarRow';
 import { HandleStoryIdClick } from '../utils/types';
 import { mapIdsToItem } from '../utils/utils';
 import { COLORS } from '../utils/colors';
+import { Row, Col } from 'react-bootstrap';
 
 type Props = {
   handleStoryIdClick: HandleStoryIdClick
@@ -32,8 +33,12 @@ const SidebarPanel: FC<Props> = ({ handleStoryIdClick }) => {
 
   return (
     <>
-      <div className='container'>
-        <div>HackerNews Reader</div>
+      <div className='wrapper'>
+        <Row>
+          <Col>
+            HackerNews Reader
+          </Col>
+        </Row>
         <div className='sidebar-panel'>
           <ul>
             {stories.map((story, idx) => (
@@ -46,15 +51,14 @@ const SidebarPanel: FC<Props> = ({ handleStoryIdClick }) => {
       </div>
 
       <style jsx>{`
-        .container {
+        .wrapper {
           position: fixed;
-          width: inherit;
         }
 
         .sidebar-panel {
           position: fixed;
           height: 100%;
-          width: inherit;
+          width: 16.67%;
         }
 
         ul {
