@@ -1,8 +1,8 @@
 export const COLORS = {
   grey: 'grey',
   html: 'rgb(238, 238, 238)',
-  evenSidebarRow: '',
-  oddSidebarRow: '#e0e0e0',
+  evenSidebarRow: '#D1D1D1',
+  oddSidebarRow: '#DCDCDC',
   sideBarRowHover: '#fff',
   evenCommentBackground: '#DCDCDC',
   oddCommentBackground: '#D1D1D1',

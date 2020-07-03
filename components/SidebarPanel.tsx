@@ -39,6 +39,7 @@ const SidebarPanel: FC<Props> = ({ handleStoryIdClick }) => {
             HackerNews Reader
           </Col>
         </Row>
+
         <div className='sidebar-panel'>
           <ul>
             {stories.map((story, idx) => (
@@ -68,6 +69,9 @@ const SidebarPanel: FC<Props> = ({ handleStoryIdClick }) => {
 
         ul > li:nth-of-type(odd) {
           background-color: ${COLORS.oddSidebarRow};
+        }
+        ul > li:nth-of-type(even) {
+          background-color: ${COLORS.evenSidebarRow};
         }
 
         li {
