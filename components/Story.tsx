@@ -3,6 +3,7 @@ import React, { FC, useState, useEffect } from 'react';
 import { getItem } from '../utils/network';
 import StoryHeader from './StoryHeader';
 import StoryContent from './StoryContent';
+import { Row, Col, Button } from 'react-bootstrap';
 
 interface Props {
   storyId: number;
@@ -10,6 +11,7 @@ interface Props {
 
 const Story: FC<Props> = ({ storyId }) => {
   const [story, setStory] = useState(null);
+  const [loadedCommentIndex, setLoadedCommentIndex] = useState(1);
 
   useEffect(() => {
     getItem(storyId)
@@ -20,27 +22,34 @@ const Story: FC<Props> = ({ storyId }) => {
     return null;
   }
 
-  const { by, score, time, title, url, kids, descendants } = story;
+  const { by, score, time, title, url, kids: commentIds, descendants } = story;
 
   return (
     <>
     <div className='container'>
-      <div className='storyheader-container'>
-        <StoryHeader by={by} score={score} time={time} title={title} url={url} descendants={descendants} />
-      </div>
+      <StoryHeader by={by} score={score} time={time} title={title} url={url} descendants={descendants} />
 
       <div className='storycontent-container'>
-        <StoryContent commentIds={kids}/>
+          <StoryContent loadedCommentIndex={loadedCommentIndex} commentIds={commentIds}/>
       </div>
+
+      <Row>
+        <Col xs='12'>
+          <Button onClick={() => setLoadedCommentIndex(loadedCommentIndex + 2)}>Load more</Button>
+        </Col>
+        <Col xs='12' className='mt-2'>
+          <Button onClick={() => setLoadedCommentIndex(commentIds.length)}>Load all</Button>
+        </Col>
+      </Row>
     </div>
 
     <style jsx>{`
-      .storyheader-container {
-        padding: 0 2rem;
+      .storycontent-container {
+        padding-top: 2rem;
       }
 
-      .storycontent-container {
-        padding: 2rem;
+      a {
+        cursor: pointer;
       }
     `}</style>
     </>

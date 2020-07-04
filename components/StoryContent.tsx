@@ -8,12 +8,12 @@ import { COLORS } from '../utils/colors';
 
 interface Props {
   commentIds: number[]
+  loadedCommentIndex: number
 }
 
-const StoryContent: FC<Props> = ({ commentIds }) => {
+const StoryContent: FC<Props> = ({ commentIds, loadedCommentIndex }) => {
   const level = 0;
   const [commentCache, setCommentCache] = useState<ICommentCache>({});
-  const [loadedCommentIndex, setLoadedCommentIndex] = useState(1);
 
   return (
     <>
@@ -30,9 +30,6 @@ const StoryContent: FC<Props> = ({ commentIds }) => {
         )
       })}
 
-      <a onClick={() => setLoadedCommentIndex(loadedCommentIndex + 2)}>Load more</a>
-      <a onClick={() => setLoadedCommentIndex(commentIds.length)}>Load all</a>
-
       <style jsx>{`
         .comment-container {
           border: 2px solid ${stringToColour(level.toString())};
@@ -40,10 +37,6 @@ const StoryContent: FC<Props> = ({ commentIds }) => {
           padding: .5rem;
           margin-bottom: 1rem;
           background-color: ${COLORS.evenCommentBackground}
-        }
-
-        a {
-          cursor: pointer;
         }
       `}</style>
     </>
