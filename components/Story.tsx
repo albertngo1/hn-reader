@@ -33,16 +33,16 @@ const Story: FC<Props> = ({ storyId }) => {
           <StoryContent loadedCommentIndex={loadedCommentIndex} commentIds={commentIds}/>
       </div>
 
-      {(loadedCommentIndex < commentIds.length) &&
-        (<Row>
+      {(loadedCommentIndex < commentIds.length) && (
+        <Row>
           <Col xs='12'>
             <Button onClick={() => setLoadedCommentIndex(loadedCommentIndex + 2)}>Load more</Button>
           </Col>
           <Col xs='12' className='mt-2'>
             <Button onClick={() => setLoadedCommentIndex(commentIds.length)}>Load all</Button>
           </Col>
-        </Row>)
-      }
+        </Row>
+      )}
     </div>
 
     <style jsx>{`

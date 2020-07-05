@@ -19,14 +19,13 @@ const StoryContent: FC<Props> = ({ commentIds, loadedCommentIndex }) => {
     <>
       {commentIds.slice(0, loadedCommentIndex).map((commentId: number, idx: number): ReactElement => {
         return (
-          <div className='comment-container' key={`parent-comment-${commentId}-${idx}`}>
-            <Comment
-              commentId={commentId}
-              level={level + 1}
-              commentCache={commentCache}
-              setCommentCache={setCommentCache}
-            />
-          </div>
+          <Comment
+            key={`parent-comment-${commentId}-${idx}`}
+            commentId={commentId}
+            level={level + 1}
+            commentCache={commentCache}
+            setCommentCache={setCommentCache}
+          />
         )
       })}
 

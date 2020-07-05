@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import React, { Fragment, ReactElement, FC, useEffect, useState } from 'react';
+import React, { ReactElement, FC, useEffect, useState } from 'react';
 import { format } from 'timeago.js';
 import { getItem } from '../utils/network';
 import { stringToColour } from '../utils/utils';
@@ -37,7 +37,7 @@ const Comment: FC<Props> = ({ commentId, level, commentCache, setCommentCache })
 
   }, [commentId])
 
-  if (!comment) {
+  if (!comment || comment.deleted) {
     return null;
   }
 
@@ -50,27 +50,13 @@ const Comment: FC<Props> = ({ commentId, level, commentCache, setCommentCache })
     return (
       kids.map((kid: number, idx: number): ReactElement => {
         return (
-          <Fragment key={`child-comment-${id}-${idx}`}>
-            <div>
-              <Comment
-                commentId={kid}
-                level={level + 1}
-                commentCache={commentCache}
-                setCommentCache={setCommentCache}
-              />
-            </div>
-
-            <style jsx>{`
-              div {
-                margin-left: 1rem;
-                border: 2px solid ${stringToColour(level.toString())};
-                border-radius: 10px;
-                padding: .5rem;
-                margin-bottom: 1rem;
-                background-color: ${level % 2 === 0 ? COLORS.evenCommentBackground : COLORS.oddCommentBackground}
-              }
-            `}</style>
-          </Fragment>
+          <Comment
+            key={`child-comment-${id}-${idx}`}
+            commentId={kid}
+            level={level + 1}
+            commentCache={commentCache}
+            setCommentCache={setCommentCache}
+          />
         );
       })
     )
@@ -113,18 +99,21 @@ const Comment: FC<Props> = ({ commentId, level, commentCache, setCommentCache })
   return (
     <>
       <div className='comment-wrapper'>
-        <span className='comment-user'>
-          <a onClick={() => setCollapsed(!collapsed)}>[–]</a>
-          {' '}{by}
-        </span>
-        {' '}
-        <span className='comment-date'>
-          {formattedTime}
-        </span>
-        <div dangerouslySetInnerHTML={{ __html: text }}></div>
+        <div className='comment-inner-wrapper'>
+          <span className='comment-user'>
+            <a onClick={() => setCollapsed(!collapsed)}>[–]</a>
+            {' '}{by}
+          </span>
+          {' '}
+          <span className='comment-date'>
+            {formattedTime}
+          </span>
+          <div dangerouslySetInnerHTML={{ __html: text }}></div>
+          {renderNestedComments()}
+        </div>
       </div>
 
-      {renderNestedComments()}
+
 
       <style jsx>{`
         div {
@@ -148,6 +137,14 @@ const Comment: FC<Props> = ({ commentId, level, commentCache, setCommentCache })
         }
 
         .comment-wrapper {
+          border: 2px solid ${stringToColour(level.toString())};
+          border-radius: 10px;
+          padding: .5rem;
+          margin-bottom: 1rem;
+          background-color: ${level % 2 === 0 ? COLORS.evenCommentBackground : COLORS.oddCommentBackground}
+        }
+
+        .comment-inner-wrapper {
           margin-left: 1rem;
         }
       `}</style>
