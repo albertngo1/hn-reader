@@ -62,7 +62,7 @@ const Comment: FC<Props> = ({ commentId, level, commentCache, setCommentCache })
 
             <style jsx>{`
               div {
-                margin-left: 2rem;
+                margin-left: 1rem;
                 border: 2px solid ${stringToColour(level.toString())};
                 border-radius: 10px;
                 padding: .5rem;
@@ -92,6 +92,7 @@ const Comment: FC<Props> = ({ commentId, level, commentCache, setCommentCache })
           a {
             cursor: pointer;
             user-select: none;
+            margin-left: 1rem;
           }
 
         .comment-user {
@@ -111,21 +112,23 @@ const Comment: FC<Props> = ({ commentId, level, commentCache, setCommentCache })
 
   return (
     <>
-      <span className='comment-user'>
-        <a onClick={() => setCollapsed(!collapsed)}>[–]</a>
-        {' '}{by}
-      </span>
-      {' '}
-      <span className='comment-date'>
-        {formattedTime}
-      </span>
-      <div dangerouslySetInnerHTML={{ __html: text }}></div>
+      <div className='comment-wrapper'>
+        <span className='comment-user'>
+          <a onClick={() => setCollapsed(!collapsed)}>[–]</a>
+          {' '}{by}
+        </span>
+        {' '}
+        <span className='comment-date'>
+          {formattedTime}
+        </span>
+        <div dangerouslySetInnerHTML={{ __html: text }}></div>
+      </div>
 
       {renderNestedComments()}
 
       <style jsx>{`
         div {
-          margin: 1rem 0;
+          margin-bottom: 1rem;
         }
 
         a {
@@ -142,6 +145,10 @@ const Comment: FC<Props> = ({ commentId, level, commentCache, setCommentCache })
         .comment-date {
           color: black;
           font-size: 0.7rem;
+        }
+
+        .comment-wrapper {
+          margin-left: 1rem;
         }
       `}</style>
     </>
