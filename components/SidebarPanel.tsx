@@ -60,6 +60,8 @@ const SidebarPanel: FC<Props> = ({ handleStoryIdClick }) => {
           position: fixed;
           height: 100%;
           width: 16.67%;
+          overflow-x: hidden;
+          padding-bottom: 1rem;
         }
 
         ul {

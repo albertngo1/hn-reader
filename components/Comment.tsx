@@ -100,15 +100,18 @@ const Comment: FC<Props> = ({ commentId, level, commentCache, setCommentCache })
     <>
       <div className='comment-wrapper'>
         <div className='comment-inner-wrapper'>
-          <span className='comment-user'>
-            <a onClick={() => setCollapsed(!collapsed)}>[–]</a>
-            {' '}{by}
-          </span>
-          {' '}
-          <span className='comment-date'>
-            {formattedTime}
-          </span>
+          <div>
+            <span className='comment-user'>
+              <a onClick={() => setCollapsed(!collapsed)}>[–]</a>
+              {' '}{by}
+            </span>
+            {' '}
+            <span className='comment-date'>
+              {formattedTime}
+            </span>
+          </div>
           <div dangerouslySetInnerHTML={{ __html: text }}></div>
+
           {renderNestedComments()}
         </div>
       </div>
