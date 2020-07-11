@@ -65,32 +65,37 @@ const Comment: FC<Props> = ({ commentId, level, commentCache, setCommentCache })
   if (collapsed) {
     return (
       <>
-        <a onClick={() => setCollapsed(!collapsed)}>
-          <span className='comment-user'>[+] {by}</span>{' '}
-          <span className='comment-date'>{formattedTime}</span>
-        </a>
+        <div className='comment-wrapper'>
+          <a onClick={() => setCollapsed(!collapsed)}>
+            <span className='comment-user'>[+] {by}</span>{' '}
+            <span className='comment-date'>{formattedTime}</span>
+          </a>
+        </div>
 
         <style jsx>{`
-          div {
-            margin: 1rem 0;
-          }
-
           a {
             cursor: pointer;
             user-select: none;
             margin-left: 1rem;
           }
 
-        .comment-user {
-          color: ${COLORS.lightBlue};
-          font-size: 0.80rem;
-          font-weight: 700;
-        }
+          .comment-user {
+            color: ${COLORS.lightBlue};
+            font-size: 0.80rem;
+            font-weight: 700;
+          }
 
-        .comment-date {
-          color: ${COLORS.black};
-          font-size: 0.7rem;
-        }
+          .comment-date {
+            color: ${COLORS.black};
+            font-size: 0.7rem;
+          }
+          .comment-wrapper {
+            border: 2px solid ${stringToColour(level.toString())};
+            border-radius: 10px;
+            padding: .5rem;
+            margin-bottom: 1rem;
+            background-color: ${level % 2 === 0 ? COLORS.evenCommentBackground : COLORS.oddCommentBackground}
+          }
         `}</style>
       </>
     )
@@ -115,8 +120,6 @@ const Comment: FC<Props> = ({ commentId, level, commentCache, setCommentCache })
           {renderNestedComments()}
         </div>
       </div>
-
-
 
       <style jsx>{`
         div {

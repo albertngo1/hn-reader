@@ -47,7 +47,9 @@ const SidebarPanel: FC<Props> = ({ handleStoryIdClick }) => {
                 <SidebarRow story={story} index={pagination + idx} handleStoryIdClick={handleStoryIdClick} />
               </li>
             ))}
+            <li><em>Load more</em></li>
           </ul>
+
         </div>
       </div>
 
@@ -60,13 +62,13 @@ const SidebarPanel: FC<Props> = ({ handleStoryIdClick }) => {
           position: fixed;
           height: 100%;
           width: 16.67%;
-          overflow-x: hidden;
           padding-bottom: 1rem;
         }
 
         ul {
-          height: 100%;
+          height: 95%;
           overflow-y: auto;
+          overflow-x: hidden;
         }
 
         ul > li:nth-of-type(odd) {
